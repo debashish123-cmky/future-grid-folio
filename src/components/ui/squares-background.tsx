@@ -161,7 +161,7 @@ export function Squares({
         cancelAnimationFrame(requestRef.current)
       }
     }
-  }, [direction, speed, borderColor, hoverFillColor, hoveredSquare, squareSize])
+  }, [direction, speed, borderColor, hoverFillColor, squareSize])
 
   return (
     <canvas

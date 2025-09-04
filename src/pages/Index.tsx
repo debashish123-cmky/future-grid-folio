@@ -1,19 +1,6 @@
-import { Squares } from "@/components/ui/squares-background";
-
 const Index = () => {
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Animated Squares Background */}
-      <div className="absolute inset-0 z-0">
-        <Squares 
-          direction="diagonal"
-          speed={0.5}
-          squareSize={40}
-          borderColor="#333" 
-          hoverFillColor="#222"
-        />
-      </div>
-      
+    <div className="min-h-screen relative overflow-hidden bg-background">
       {/* Simple Content Layer */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 space-y-8">
         {/* Simple Binary Text */}

@@ -1,6 +1,6 @@
 import { Squares } from "@/components/ui/squares-background";
 import { TypingAnimation } from "@/components/ui/typing-animation";
-import { Button } from "@/components/ui/button";
+import { MediaButton } from "@/components/ui/media-button";
 
 const beams = [
   {
@@ -179,22 +179,16 @@ const Index = () => {
           className="text-2xl md:text-4xl font-mono cyber-text neon-glow tracking-wider"
         />
         
-        {/* Professional Buttons */}
+        {/* Media Buttons */}
         <div className="flex gap-6 mt-8">
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-primary/50 text-primary hover:bg-primary/10 hover:border-primary transition-all duration-300"
-          >
-            Know about my career
-          </Button>
-          <Button 
-            variant="default"
-            size="lg"
-            className="bg-primary hover:bg-primary/90 transition-all duration-300"
-          >
-            Check my Resume
-          </Button>
+          <MediaButton
+            label="Know about my career"
+            mediaUrl="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+          />
+          <MediaButton
+            label="Check my Resume"
+            mediaUrl="https://www.w3schools.com/howto/rain.mp4"
+          />
         </div>
       </div>
     </div>

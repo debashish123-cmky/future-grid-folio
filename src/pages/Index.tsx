@@ -1,6 +1,9 @@
 import { Squares } from "@/components/ui/squares-background";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { MediaButton } from "@/components/ui/media-button";
+import { DimensionalTransition } from "@/components/ui/dimensional-transition";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const beams = [
   {
@@ -157,6 +160,18 @@ const gradientColors = {
 };
 
 const Index = () => {
+  const navigate = useNavigate();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleCareerClick = () => {
+    setIsTransitioning(true);
+  };
+
+  const handleTransitionComplete = () => {
+    navigate('/career');
+    setIsTransitioning(false);
+  };
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Animated Squares Background */}
@@ -181,16 +196,24 @@ const Index = () => {
         
         {/* Media Buttons */}
         <div className="flex gap-6 mt-8">
-          <MediaButton
-            label="Know about my career"
-            mediaUrl="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-          />
+          <div onClick={handleCareerClick}>
+            <MediaButton
+              label="Know about my career"
+              mediaUrl="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+            />
+          </div>
           <MediaButton
             label="Check my Resume"
             mediaUrl="https://www.w3schools.com/howto/rain.mp4"
           />
         </div>
       </div>
+      
+      {/* Dimensional Transition */}
+      <DimensionalTransition 
+        isActive={isTransitioning} 
+        onComplete={handleTransitionComplete}
+      />
     </div>
   );
 };

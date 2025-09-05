@@ -1,6 +1,6 @@
 import { Squares } from "@/components/ui/squares-background";
-import { PulseBeams } from "@/components/ui/pulse-beams";
 import { TypingAnimation } from "@/components/ui/typing-animation";
+import { Button } from "@/components/ui/button";
 
 const beams = [
   {
@@ -179,23 +179,23 @@ const Index = () => {
           className="text-2xl md:text-4xl font-mono cyber-text neon-glow tracking-wider"
         />
         
-        {/* Pulse Beams Button */}
-        <PulseBeams
-          beams={beams}
-          gradientColors={gradientColors}
-          className="h-auto"
-        >
-          <button className="bg-slate-800 w-[320px] z-40 h-[120px] no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white inline-block">
-            <span className="absolute inset-0 overflow-hidden rounded-full">
-              <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            </span>
-            <div className="relative flex justify-center w-[320px] text-center space-x-2 h-[120px] items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10">
-              <span className="md:text-4xl text-base inline-block bg-clip-text text-transparent bg-gradient-to-r from-neutral-300 via-neutral-600 to-neutral-300">
-                Connect
-              </span>
-            </div>
-          </button>
-        </PulseBeams>
+        {/* Professional Buttons */}
+        <div className="flex gap-6 mt-8">
+          <Button 
+            variant="outline" 
+            size="lg"
+            className="border-primary/50 text-primary hover:bg-primary/10 hover:border-primary transition-all duration-300"
+          >
+            Know about my career
+          </Button>
+          <Button 
+            variant="default"
+            size="lg"
+            className="bg-primary hover:bg-primary/90 transition-all duration-300"
+          >
+            Check my Resume
+          </Button>
+        </div>
       </div>
     </div>
   );

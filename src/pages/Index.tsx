@@ -187,11 +187,11 @@ const Index = () => {
       
       {/* Content Layer */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 space-y-8">
-        {/* Typing Animation with Binary Text */}
+        {/* Typing Animation with Personal Introduction */}
         <TypingAnimation
-          text="01110111011001010110110101100101"
-          duration={150}
-          className="text-2xl md:text-4xl font-mono cyber-text neon-glow tracking-wider"
+          text="I'm Debashish — [Developer] → [AI Enthusiast] → [Innovator]"
+          duration={100}
+          className="text-2xl md:text-4xl font-mono text-foreground tracking-wide"
         />
         
         {/* Media Buttons */}
@@ -211,8 +211,8 @@ const Index = () => {
       
       {/* Dimensional Transition */}
       <DimensionalTransition 
-        isActive={isTransitioning} 
-        onComplete={handleTransitionComplete}
+        isActive={isTransitioning}
+        onTransitionComplete={handleTransitionComplete}
       />
     </div>
   );

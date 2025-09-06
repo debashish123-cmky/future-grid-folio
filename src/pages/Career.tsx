@@ -3,6 +3,8 @@ import { ArrowLeft, Mail, Github, Linkedin, Twitter, Briefcase, GraduationCap, H
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { FallingPattern } from "@/components/ui/falling-pattern";
+import { Spotlight } from "@/components/ui/spotlight";
+import { SplineScene } from "@/components/ui/splite";
 
 const Career = () => {
   const navigate = useNavigate();
@@ -36,21 +38,51 @@ const Career = () => {
           </Button>
         </div>
 
-        {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center px-6">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Career Journey
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-              Exploring the dimensions of technology, creativity, and innovation
-            </p>
-          </motion.div>
+        {/* Hero Section with 3D Scene */}
+        <section className="min-h-screen flex items-center px-6">
+          <div className="container mx-auto max-w-7xl">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              {/* Left Content */}
+              <motion.div
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="backdrop-blur-sm bg-card/30 p-8 rounded-xl border border-border/20"
+              >
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground font-mono tracking-wider">
+                  Career Journey
+                </h1>
+                <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+                  Exploring the dimensions of technology, creativity, and innovation through immersive digital experiences.
+                </p>
+                <div className="flex gap-4">
+                  <div className="backdrop-blur-sm bg-primary/10 px-4 py-2 rounded-lg border border-primary/20">
+                    <span className="text-primary font-semibold">5+ Years</span>
+                  </div>
+                  <div className="backdrop-blur-sm bg-secondary/10 px-4 py-2 rounded-lg border border-secondary/20">
+                    <span className="text-secondary font-semibold">AI Focused</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Right 3D Scene */}
+              <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="relative h-[500px] backdrop-blur-sm bg-card/20 rounded-xl border border-border/20 overflow-hidden"
+              >
+                <Spotlight
+                  className="-top-40 left-0 md:left-60 md:-top-20"
+                  fill="hsl(var(--primary))"
+                />
+                <SplineScene 
+                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </motion.div>
+            </div>
+          </div>
         </section>
 
         {/* Experience Section */}
@@ -61,7 +93,7 @@ const Career = () => {
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="backdrop-blur-sm bg-card/80 p-8 rounded-lg border border-border/50"
+              className="backdrop-blur-lg bg-card/10 p-8 rounded-xl border border-border/20 shadow-xl"
             >
               <div className="flex items-center mb-6">
                 <Briefcase className="w-8 h-8 text-primary mr-4" />
@@ -97,7 +129,7 @@ const Career = () => {
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="backdrop-blur-sm bg-card/80 p-8 rounded-lg border border-border/50"
+              className="backdrop-blur-lg bg-card/10 p-8 rounded-xl border border-border/20 shadow-xl"
             >
               <div className="flex items-center mb-6">
                 <GraduationCap className="w-8 h-8 text-secondary mr-4" />
@@ -133,7 +165,7 @@ const Career = () => {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="backdrop-blur-sm bg-card/80 p-8 rounded-lg border border-border/50"
+              className="backdrop-blur-lg bg-card/10 p-8 rounded-xl border border-border/20 shadow-xl"
             >
               <div className="flex items-center mb-6">
                 <Heart className="w-8 h-8 text-accent mr-4" />
@@ -167,7 +199,7 @@ const Career = () => {
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="backdrop-blur-sm bg-card/80 p-8 rounded-lg border border-border/50"
+              className="backdrop-blur-lg bg-card/10 p-8 rounded-xl border border-border/20 shadow-xl"
             >
               <div className="flex items-center mb-6">
                 <Code className="w-8 h-8 text-primary mr-4" />
@@ -211,7 +243,7 @@ const Career = () => {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-center backdrop-blur-sm bg-card/80 p-8 rounded-lg border border-border/50"
+              className="text-center backdrop-blur-lg bg-card/10 p-8 rounded-xl border border-border/20 shadow-xl"
             >
               <div className="flex justify-center mb-6">
                 <User className="w-12 h-12 text-primary" />

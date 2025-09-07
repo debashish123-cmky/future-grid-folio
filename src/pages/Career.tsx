@@ -3,14 +3,36 @@ import { ArrowLeft, Mail, Github, Linkedin, Twitter, Briefcase, GraduationCap, H
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { FallingPattern } from "@/components/ui/falling-pattern";
-import { Spotlight } from "@/components/ui/spotlight";
 import { SplineScene } from "@/components/ui/splite";
 import { Timeline } from "@/components/ui/timeline";
 import { CareerSection } from "@/components/career/career-section";
 import GradientMenu from "@/components/ui/gradient-menu";
+import { GooeyText } from "@/components/ui/gooey-text-morphing";
+import { AnimatedSocialIcons } from "@/components/ui/floating-action-button";
+import { CursorSpotlight } from "@/components/ui/cursor-spotlight";
 
 const Career = () => {
   const navigate = useNavigate();
+
+  const socialIcons = [
+    { 
+      Icon: Github,
+      href: "https://github.com",
+      className: "hover:bg-accent"
+    },
+    { 
+      Icon: Twitter,
+      href: "https://twitter.com" 
+    },
+    { 
+      Icon: Linkedin,
+      href: "https://linkedin.com" 
+    },
+    { 
+      Icon: Mail,
+      href: "mailto:contact@example.com" 
+    }
+  ];
 
   const experienceData = [
     {
@@ -81,182 +103,205 @@ const Career = () => {
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="backdrop-blur-xl bg-card/20 border border-border/30 rounded-2xl p-8 shadow-2xl overflow-hidden relative"
+              className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 shadow-2xl relative min-h-[600px]"
             >
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                {/* Left Content */}
-                <div className="relative z-10">
-                  <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground font-mono tracking-wider">
-                    Career Journey
-                  </h1>
-                  <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                    Exploring the dimensions of technology, creativity, and innovation through immersive digital experiences.
-                  </p>
-                  <div className="flex gap-3">
-                    <div className="backdrop-blur-sm bg-primary/10 px-3 py-2 rounded-lg border border-primary/20">
-                      <span className="text-primary font-semibold text-sm">5+ Years</span>
+              <CursorSpotlight className="absolute inset-0 rounded-3xl" size={400}>
+                <div className="grid lg:grid-cols-2 gap-12 items-center h-full relative z-10">
+                  {/* Left Content */}
+                  <div className="space-y-6">
+                    <div className="space-y-2">
+                      <h1 className="text-2xl md:text-3xl text-muted-foreground font-light">
+                        I'm Debashish —
+                      </h1>
+                      <div className="text-4xl md:text-6xl font-bold text-foreground font-mono tracking-wide">
+                        <span className="text-primary">[Developer]</span> → <span className="text-accent">[AI Enthusiast]</span> → <span className="text-secondary">[Innovator]</span>
+                      </div>
                     </div>
-                    <div className="backdrop-blur-sm bg-accent/10 px-3 py-2 rounded-lg border border-accent/20">
-                      <span className="text-accent font-semibold text-sm">AI Focused</span>
+                    <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                      Exploring the dimensions of technology, creativity, and innovation through immersive digital experiences.
+                    </p>
+                    <div className="flex gap-4">
+                      <div className="backdrop-blur-sm bg-primary/10 px-4 py-3 rounded-xl border border-primary/20">
+                        <span className="text-primary font-semibold">5+ Years</span>
+                      </div>
+                      <div className="backdrop-blur-sm bg-accent/10 px-4 py-3 rounded-xl border border-accent/20">
+                        <span className="text-accent font-semibold">AI Focused</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Right 3D Scene - Integrated */}
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
-                  <Spotlight
-                    className="-top-20 left-0 md:left-30 md:-top-10"
-                    fill="hsl(var(--primary))"
-                  />
-                  <SplineScene 
-                    scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                    className="w-full h-full scale-150"
-                  />
+                  {/* Right 3D Scene - No Cropping */}
+                  <div className="relative h-[500px] rounded-2xl">
+                    <SplineScene 
+                      scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                      className="w-full h-full"
+                    />
+                  </div>
                 </div>
-              </div>
+              </CursorSpotlight>
             </motion.div>
           </div>
         </section>
 
         {/* Experience Section */}
         <CareerSection id="experience" className="ml-20">
-          <div className="flex items-center mb-8">
-            <Briefcase className="w-8 h-8 text-primary mr-4" />
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Professional Experience</h2>
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 min-h-[80vh] flex flex-col justify-center">
+            <div className="flex items-center mb-8">
+              <Briefcase className="w-8 h-8 text-primary mr-4" />
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Professional Experience</h2>
+            </div>
+            <Timeline items={experienceData} />
           </div>
-          <Timeline items={experienceData} />
         </CareerSection>
 
         {/* Education Section */}
         <CareerSection id="education" className="ml-20">
-          <div className="flex items-center mb-8">
-            <GraduationCap className="w-8 h-8 text-accent mr-4" />
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Education</h2>
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 min-h-[80vh] flex flex-col justify-center">
+            <div className="flex items-center mb-8">
+              <GraduationCap className="w-8 h-8 text-accent mr-4" />
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Education</h2>
+            </div>
+            <Timeline items={educationData} />
           </div>
-          <Timeline items={educationData} />
         </CareerSection>
 
         {/* Passion Section */}
         <CareerSection id="passion" className="ml-20">
-          <div className="flex items-center mb-8">
-            <Heart className="w-8 h-8 text-secondary mr-4" />
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Passion & Interests</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div 
-              className="space-y-4"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-xl font-semibold text-foreground">Technology Innovation</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Fascinated by emerging technologies like AI, blockchain, and quantum computing. 
-                Always exploring how these can shape the future of human interaction with technology.
-              </p>
-            </motion.div>
-            <motion.div 
-              className="space-y-4"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-xl font-semibold text-foreground">Open Source</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Contributing to open source projects and building tools that help other developers. 
-                Believing in the power of community-driven development and knowledge sharing.
-              </p>
-            </motion.div>
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 min-h-[80vh] flex flex-col justify-center">
+            <div className="flex items-center mb-8">
+              <Heart className="w-8 h-8 text-secondary mr-4" />
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Passion & Interests</h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <motion.div 
+                className="space-y-4 p-6 bg-background/20 backdrop-blur-sm rounded-lg border border-border/30"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-xl font-semibold text-foreground">Technology Innovation</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Fascinated by emerging technologies like AI, blockchain, and quantum computing. 
+                  Always exploring how these can shape the future of human interaction with technology.
+                </p>
+              </motion.div>
+              <motion.div 
+                className="space-y-4 p-6 bg-background/20 backdrop-blur-sm rounded-lg border border-border/30"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-xl font-semibold text-foreground">Open Source</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Contributing to open source projects and building tools that help other developers. 
+                  Believing in the power of community-driven development and knowledge sharing.
+                </p>
+              </motion.div>
+            </div>
           </div>
         </CareerSection>
 
         {/* Projects Section */}
         <CareerSection id="projects" className="ml-20">
-          <div className="flex items-center mb-8">
-            <Code className="w-8 h-8 text-primary mr-4" />
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Featured Projects</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <motion.div 
-              className="p-6 bg-background/20 backdrop-blur-sm rounded-lg border border-border/30"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-xl font-semibold text-foreground mb-3">AI-Powered Dashboard</h3>
-              <p className="text-muted-foreground mb-4">
-                A comprehensive analytics platform using machine learning to provide insights 
-                and predictions for business intelligence.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-2 py-1 bg-primary/20 text-primary rounded text-sm border border-primary/20">React</span>
-                <span className="px-2 py-1 bg-accent/20 text-accent rounded text-sm border border-accent/20">Python</span>
-                <span className="px-2 py-1 bg-secondary/20 text-secondary rounded text-sm border border-secondary/20">TensorFlow</span>
-              </div>
-            </motion.div>
-            <motion.div 
-              className="p-6 bg-background/20 backdrop-blur-sm rounded-lg border border-border/30"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-xl font-semibold text-foreground mb-3">3D Web Experience</h3>
-              <p className="text-muted-foreground mb-4">
-                An immersive web application using Three.js and WebGL to create interactive 
-                3D environments for storytelling and data visualization.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-2 py-1 bg-primary/20 text-primary rounded text-sm border border-primary/20">Three.js</span>
-                <span className="px-2 py-1 bg-accent/20 text-accent rounded text-sm border border-accent/20">WebGL</span>
-                <span className="px-2 py-1 bg-secondary/20 text-secondary rounded text-sm border border-secondary/20">GSAP</span>
-              </div>
-            </motion.div>
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 min-h-[80vh] flex flex-col justify-center">
+            <div className="flex items-center mb-8">
+              <Code className="w-8 h-8 text-primary mr-4" />
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Featured Projects</h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <motion.div 
+                className="p-8 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-xl font-semibold text-foreground mb-3">AI-Powered Dashboard</h3>
+                <p className="text-muted-foreground mb-4">
+                  A comprehensive analytics platform using machine learning to provide insights 
+                  and predictions for business intelligence.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm border border-primary/20">React</span>
+                  <span className="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm border border-accent/20">Python</span>
+                  <span className="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm border border-secondary/20">TensorFlow</span>
+                </div>
+              </motion.div>
+              <motion.div 
+                className="p-8 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-xl font-semibold text-foreground mb-3">3D Web Experience</h3>
+                <p className="text-muted-foreground mb-4">
+                  An immersive web application using Three.js and WebGL to create interactive 
+                  3D environments for storytelling and data visualization.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm border border-primary/20">Three.js</span>
+                  <span className="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm border border-accent/20">WebGL</span>
+                  <span className="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm border border-secondary/20">GSAP</span>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </CareerSection>
 
         {/* Contact Footer */}
         <CareerSection id="contact" className="ml-20">
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <User className="w-12 h-12 text-primary" />
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-[80vh] flex flex-col justify-center">
+            <div className="text-center space-y-8">
+              <div className="space-y-6">
+                <GooeyText
+                  texts={["Liked my work", "and overall", "experience?"]}
+                  morphTime={1.5}
+                  cooldownTime={1}
+                  className="h-24"
+                  textClassName="text-3xl md:text-5xl font-bold"
+                />
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
+                    Let's Connect
+                  </h3>
+                  <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                    Ready to collaborate on something amazing? Let's build the future together.
+                  </p>
+                </motion.div>
+              </div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+                className="flex justify-center"
+              >
+                <AnimatedSocialIcons 
+                  icons={socialIcons}
+                  iconSize={24}
+                />
+              </motion.div>
+              
+              <motion.p 
+                className="text-muted-foreground"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 1 }}
+                viewport={{ once: true }}
+              >
+                © 2024 Debashish. Crafted with passion and curiosity.
+              </motion.p>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Let's Connect</h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Ready to collaborate on something amazing? Let's build the future together.
-            </p>
-            
-            <motion.div 
-              className="flex flex-wrap justify-center gap-4 mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, staggerChildren: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Button variant="outline" size="lg" className="backdrop-blur-sm border-border/30 hover:bg-primary/10">
-                <Mail className="w-5 h-5 mr-2" />
-                Email
-              </Button>
-              <Button variant="outline" size="lg" className="backdrop-blur-sm border-border/30 hover:bg-primary/10">
-                <Github className="w-5 h-5 mr-2" />
-                GitHub
-              </Button>
-              <Button variant="outline" size="lg" className="backdrop-blur-sm border-border/30 hover:bg-primary/10">
-                <Linkedin className="w-5 h-5 mr-2" />
-                LinkedIn
-              </Button>
-              <Button variant="outline" size="lg" className="backdrop-blur-sm border-border/30 hover:bg-primary/10">
-                <Twitter className="w-5 h-5 mr-2" />
-                Twitter
-              </Button>
-            </motion.div>
-            
-            <p className="text-muted-foreground">
-              © 2024 Debashish. Crafted with passion and curiosity.
-            </p>
           </div>
         </CareerSection>
       </motion.div>

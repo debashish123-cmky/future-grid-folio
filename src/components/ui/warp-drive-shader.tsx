@@ -83,15 +83,11 @@ const WarpDriveShader = () => {
     window.addEventListener('resize', onResize);
     onResize(); // initialize size
 
-    // 5) Mouse handler
-    const onMouseMove = (e: MouseEvent) => {
-      // flip Y so origin is bottom-left
-      uniforms.iMouse.value.set(
-        e.clientX,
-        container.clientHeight - e.clientY
-      );
-    };
-    window.addEventListener('mousemove', onMouseMove);
+    // 5) Keep mouse centered for transition effect
+    uniforms.iMouse.value.set(
+      container.clientWidth / 2,
+      container.clientHeight / 2
+    );
 
     // 6) Animation loop
     renderer.setAnimationLoop(() => {
@@ -102,7 +98,6 @@ const WarpDriveShader = () => {
     // 7) Cleanup on unmount
     return () => {
       window.removeEventListener('resize', onResize);
-      window.removeEventListener('mousemove', onMouseMove);
 
       renderer.setAnimationLoop(null);
 

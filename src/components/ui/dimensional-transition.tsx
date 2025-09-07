@@ -18,20 +18,22 @@ export const DimensionalTransition = ({ isActive, onTransitionComplete }: Dimens
     }
   }, [isActive, onTransitionComplete]);
 
-
   return (
     <AnimatePresence>
       {isActive && (
         <motion.div
-          className="fixed inset-0 z-50"
+          className="fixed inset-0 z-[9999] flex items-center justify-center"
+          style={{ pointerEvents: 'none' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <WarpDriveShader />
+          <div className="fixed inset-0">
+            <WarpDriveShader />
+          </div>
           
           <motion.div
-            className="absolute inset-0 flex items-center justify-center"
+            className="relative z-10 flex items-center justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 1 }}

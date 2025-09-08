@@ -1,26 +1,24 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 interface CareerSectionProps {
-  children: React.ReactNode;
+  children: ReactNode;
+  id: string;
   className?: string;
-  id?: string;
 }
 
-export const CareerSection = ({ children, className = '', id }: CareerSectionProps) => {
+export const CareerSection = ({ children, id, className = "" }: CareerSectionProps) => {
   return (
     <motion.section
       id={id}
-      className={`min-h-screen flex items-center justify-center py-20 px-6 ${className}`}
+      className={`min-h-screen flex items-center px-6 py-12 ${className}`}
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
     >
-      <div className="container mx-auto max-w-6xl">
-        <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-2xl p-8 md:p-12 shadow-2xl">
-          {children}
-        </div>
+      <div className="container mx-auto max-w-full w-full">
+        {children}
       </div>
     </motion.section>
   );

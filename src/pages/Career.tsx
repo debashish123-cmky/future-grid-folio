@@ -6,7 +6,7 @@ import { FallingPattern } from "@/components/ui/falling-pattern";
 import { SplineScene } from "@/components/ui/splite";
 import { Timeline } from "@/components/ui/timeline";
 import { CareerSection } from "@/components/career/career-section";
-import GradientMenu from "@/components/ui/gradient-menu";
+import { LimelightNav } from "@/components/ui/limelight-nav";
 import { GooeyText } from "@/components/ui/gooey-text-morphing";
 import { AnimatedSocialIcons } from "@/components/ui/floating-action-button";
 import { CursorSpotlight } from "@/components/ui/cursor-spotlight";
@@ -85,8 +85,10 @@ const Career = () => {
       {/* Glass morphism overlay */}
       <div className="fixed inset-0 z-[1] backdrop-blur-sm bg-gradient-to-br from-background/30 via-background/10 to-background/30" />
       
-      {/* Vertical Navigation */}
-      <GradientMenu />
+      {/* Top Right Navigation */}
+      <div className="fixed top-6 right-6 z-50">
+        <LimelightNav />
+      </div>
 
       <motion.div 
         className="relative z-10"
@@ -97,44 +99,44 @@ const Career = () => {
       >
 
         {/* Hero Section with Integrated 3D Scene */}
-        <section className="min-h-screen flex items-center px-6 ml-20">
-          <div className="container mx-auto max-w-7xl">
+        <section className="min-h-screen flex items-center px-6">
+          <div className="container mx-auto max-w-full">
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 shadow-2xl relative min-h-[600px]"
+              className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 shadow-2xl relative min-h-[90vh] w-full"
             >
-              <CursorSpotlight className="absolute inset-0 rounded-3xl" size={400}>
+              <CursorSpotlight className="absolute inset-0 rounded-3xl" size={600}>
                 <div className="grid lg:grid-cols-2 gap-12 items-center h-full relative z-10">
                   {/* Left Content */}
-                  <div className="space-y-6">
-                    <div className="space-y-2">
-                      <h1 className="text-2xl md:text-3xl text-muted-foreground font-light">
+                  <div className="space-y-8">
+                    <div className="space-y-4">
+                      <h1 className="text-3xl md:text-4xl text-muted-foreground font-light">
                         I'm Debashish —
                       </h1>
-                      <div className="text-4xl md:text-6xl font-bold text-foreground font-mono tracking-wide">
+                      <div className="text-5xl md:text-7xl font-bold text-foreground font-mono tracking-wide leading-tight">
                         <span className="text-primary">[Developer]</span> → <span className="text-accent">[AI Enthusiast]</span> → <span className="text-secondary">[Innovator]</span>
                       </div>
                     </div>
-                    <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                    <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
                       Exploring the dimensions of technology, creativity, and innovation through immersive digital experiences.
                     </p>
-                    <div className="flex gap-4">
-                      <div className="backdrop-blur-sm bg-primary/10 px-4 py-3 rounded-xl border border-primary/20">
-                        <span className="text-primary font-semibold">5+ Years</span>
+                    <div className="flex gap-6">
+                      <div className="backdrop-blur-sm bg-primary/10 px-6 py-4 rounded-xl border border-primary/20">
+                        <span className="text-primary font-semibold text-lg">5+ Years</span>
                       </div>
-                      <div className="backdrop-blur-sm bg-accent/10 px-4 py-3 rounded-xl border border-accent/20">
-                        <span className="text-accent font-semibold">AI Focused</span>
+                      <div className="backdrop-blur-sm bg-accent/10 px-6 py-4 rounded-xl border border-accent/20">
+                        <span className="text-accent font-semibold text-lg">AI Focused</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Right 3D Scene - No Cropping */}
-                  <div className="relative h-[500px] rounded-2xl">
+                  {/* Right 3D Scene - Optimized and Uncrpped */}
+                  <div className="relative h-[70vh] w-full rounded-2xl overflow-visible">
                     <SplineScene 
                       scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                      className="w-full h-full"
+                      className="w-full h-full scale-125 origin-center"
                     />
                   </div>
                 </div>
@@ -144,57 +146,57 @@ const Career = () => {
         </section>
 
         {/* Experience Section */}
-        <CareerSection id="experience" className="ml-20">
-          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 min-h-[80vh] flex flex-col justify-center">
-            <div className="flex items-center mb-8">
-              <Briefcase className="w-8 h-8 text-primary mr-4" />
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Professional Experience</h2>
+        <CareerSection id="experience">
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-screen w-full flex flex-col justify-center">
+            <div className="flex items-center mb-12">
+              <Briefcase className="w-10 h-10 text-primary mr-6" />
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Professional Experience</h2>
             </div>
             <Timeline items={experienceData} />
           </div>
         </CareerSection>
 
         {/* Education Section */}
-        <CareerSection id="education" className="ml-20">
-          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 min-h-[80vh] flex flex-col justify-center">
-            <div className="flex items-center mb-8">
-              <GraduationCap className="w-8 h-8 text-accent mr-4" />
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Education</h2>
+        <CareerSection id="education">
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-screen w-full flex flex-col justify-center">
+            <div className="flex items-center mb-12">
+              <GraduationCap className="w-10 h-10 text-accent mr-6" />
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Education</h2>
             </div>
             <Timeline items={educationData} />
           </div>
         </CareerSection>
 
         {/* Passion Section */}
-        <CareerSection id="passion" className="ml-20">
-          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 min-h-[80vh] flex flex-col justify-center">
-            <div className="flex items-center mb-8">
-              <Heart className="w-8 h-8 text-secondary mr-4" />
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Passion & Interests</h2>
+        <CareerSection id="passion">
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-screen w-full flex flex-col justify-center">
+            <div className="flex items-center mb-12">
+              <Heart className="w-10 h-10 text-secondary mr-6" />
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Passion & Interests</h2>
             </div>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-12">
               <motion.div 
-                className="space-y-4 p-6 bg-background/20 backdrop-blur-sm rounded-lg border border-border/30"
+                className="space-y-6 p-8 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-xl font-semibold text-foreground">Technology Innovation</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-2xl font-semibold text-foreground">Technology Innovation</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   Fascinated by emerging technologies like AI, blockchain, and quantum computing. 
                   Always exploring how these can shape the future of human interaction with technology.
                 </p>
               </motion.div>
               <motion.div 
-                className="space-y-4 p-6 bg-background/20 backdrop-blur-sm rounded-lg border border-border/30"
+                className="space-y-6 p-8 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-xl font-semibold text-foreground">Open Source</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-2xl font-semibold text-foreground">Open Source</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   Contributing to open source projects and building tools that help other developers. 
                   Believing in the power of community-driven development and knowledge sharing.
                 </p>
@@ -204,47 +206,47 @@ const Career = () => {
         </CareerSection>
 
         {/* Projects Section */}
-        <CareerSection id="projects" className="ml-20">
-          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 min-h-[80vh] flex flex-col justify-center">
-            <div className="flex items-center mb-8">
-              <Code className="w-8 h-8 text-primary mr-4" />
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Featured Projects</h2>
+        <CareerSection id="projects">
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-screen w-full flex flex-col justify-center">
+            <div className="flex items-center mb-12">
+              <Code className="w-10 h-10 text-primary mr-6" />
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Featured Projects</h2>
             </div>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-12">
               <motion.div 
-                className="p-8 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
+                className="p-10 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-xl font-semibold text-foreground mb-3">AI-Powered Dashboard</h3>
-                <p className="text-muted-foreground mb-4">
+                <h3 className="text-2xl font-semibold text-foreground mb-4">AI-Powered Dashboard</h3>
+                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                   A comprehensive analytics platform using machine learning to provide insights 
                   and predictions for business intelligence.
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm border border-primary/20">React</span>
-                  <span className="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm border border-accent/20">Python</span>
-                  <span className="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm border border-secondary/20">TensorFlow</span>
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-2 bg-primary/20 text-primary rounded-full text-sm border border-primary/20 font-medium">React</span>
+                  <span className="px-4 py-2 bg-accent/20 text-accent rounded-full text-sm border border-accent/20 font-medium">Python</span>
+                  <span className="px-4 py-2 bg-secondary/20 text-secondary rounded-full text-sm border border-secondary/20 font-medium">TensorFlow</span>
                 </div>
               </motion.div>
               <motion.div 
-                className="p-8 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
+                className="p-10 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-xl font-semibold text-foreground mb-3">3D Web Experience</h3>
-                <p className="text-muted-foreground mb-4">
+                <h3 className="text-2xl font-semibold text-foreground mb-4">3D Web Experience</h3>
+                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                   An immersive web application using Three.js and WebGL to create interactive 
                   3D environments for storytelling and data visualization.
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm border border-primary/20">Three.js</span>
-                  <span className="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm border border-accent/20">WebGL</span>
-                  <span className="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm border border-secondary/20">GSAP</span>
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-2 bg-primary/20 text-primary rounded-full text-sm border border-primary/20 font-medium">Three.js</span>
+                  <span className="px-4 py-2 bg-accent/20 text-accent rounded-full text-sm border border-accent/20 font-medium">WebGL</span>
+                  <span className="px-4 py-2 bg-secondary/20 text-secondary rounded-full text-sm border border-secondary/20 font-medium">GSAP</span>
                 </div>
               </motion.div>
             </div>
@@ -252,16 +254,16 @@ const Career = () => {
         </CareerSection>
 
         {/* Contact Footer */}
-        <CareerSection id="contact" className="ml-20">
-          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-[80vh] flex flex-col justify-center">
-            <div className="text-center space-y-8">
-              <div className="space-y-6">
+        <CareerSection id="contact">
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-screen w-full flex flex-col justify-center">
+            <div className="text-center space-y-12">
+              <div className="space-y-8">
                 <GooeyText
                   texts={["Liked my work", "and overall", "experience?"]}
                   morphTime={1.5}
                   cooldownTime={1}
-                  className="h-24"
-                  textClassName="text-3xl md:text-5xl font-bold"
+                  className="h-32"
+                  textClassName="text-4xl md:text-6xl font-bold"
                 />
                 
                 <motion.div
@@ -270,10 +272,10 @@ const Career = () => {
                   transition={{ duration: 0.6, delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
+                  <h3 className="text-3xl md:text-4xl font-semibold text-foreground mb-6">
                     Let's Connect
                   </h3>
-                  <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
                     Ready to collaborate on something amazing? Let's build the future together.
                   </p>
                 </motion.div>
@@ -288,12 +290,12 @@ const Career = () => {
               >
                 <AnimatedSocialIcons 
                   icons={socialIcons}
-                  iconSize={24}
+                  iconSize={28}
                 />
               </motion.div>
               
               <motion.p 
-                className="text-muted-foreground"
+                className="text-muted-foreground text-lg"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 1 }}

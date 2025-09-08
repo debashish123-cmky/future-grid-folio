@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Mail, Github, Linkedin, Twitter, Briefcase, GraduationCap, Heart, Code, User } from "lucide-react";
+import { ArrowLeft, Mail, Github, Linkedin, Twitter, Briefcase, GraduationCap, Heart, Code, User, Play, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { FallingPattern } from "@/components/ui/falling-pattern";
@@ -10,6 +10,8 @@ import { LimelightNav } from "@/components/ui/limelight-nav";
 import { GooeyText } from "@/components/ui/gooey-text-morphing";
 import { AnimatedSocialIcons } from "@/components/ui/floating-action-button";
 import { CursorSpotlight } from "@/components/ui/cursor-spotlight";
+import { GlowCard } from "@/components/ui/spotlight-card";
+import OrbitingSkills from "@/components/ui/orbiting-skills";
 
 const Career = () => {
   const navigate = useNavigate();
@@ -56,6 +58,33 @@ const Career = () => {
     }
   ];
 
+  const projectsData = [
+    {
+      title: "AI-Powered Dashboard",
+      description: "A comprehensive analytics platform using machine learning to provide insights and predictions for business intelligence.",
+      technologies: ["React", "Python", "TensorFlow"],
+      demoUrl: "https://demo.example.com",
+      githubUrl: "https://github.com/user/ai-dashboard",
+      glowColor: "blue" as const
+    },
+    {
+      title: "3D Web Experience",
+      description: "An immersive web application using Three.js and WebGL to create interactive 3D environments for storytelling.",
+      technologies: ["Three.js", "WebGL", "GSAP"],
+      demoUrl: "https://demo.example.com",
+      githubUrl: "https://github.com/user/3d-web",
+      glowColor: "purple" as const
+    },
+    {
+      title: "Real-time Chat Platform",
+      description: "A scalable messaging platform with real-time communication, file sharing, and advanced chat features.",
+      technologies: ["Node.js", "Socket.io", "React"],
+      demoUrl: "https://demo.example.com",
+      githubUrl: "https://github.com/user/chat-platform",
+      glowColor: "green" as const
+    }
+  ];
+
   const educationData = [
     {
       title: "Master's in Computer Science",
@@ -85,9 +114,15 @@ const Career = () => {
       {/* Glass morphism overlay */}
       <div className="fixed inset-0 z-[1] backdrop-blur-sm bg-gradient-to-br from-background/30 via-background/10 to-background/30" />
       
-      {/* Top Right Navigation */}
-      <div className="fixed top-6 right-6 z-50">
-        <LimelightNav />
+      {/* Top Right Navigation - Fixed positioning */}
+      <div className="fixed top-6 right-6 z-[100]">
+        <LimelightNav 
+          items={[
+            { id: 'home', icon: <User />, label: 'Home', onClick: () => navigate('/') },
+            { id: 'career', icon: <Briefcase />, label: 'Career' },
+            { id: 'contact', icon: <Mail />, label: 'Contact' },
+          ]}
+        />
       </div>
 
       <motion.div 
@@ -147,7 +182,7 @@ const Career = () => {
 
         {/* Experience Section */}
         <CareerSection id="experience">
-          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-screen w-full flex flex-col justify-center">
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 md:p-12 min-h-screen w-full flex flex-col justify-center">
             <div className="flex items-center mb-12">
               <Briefcase className="w-10 h-10 text-primary mr-6" />
               <h2 className="text-4xl md:text-5xl font-bold text-foreground">Professional Experience</h2>
@@ -156,100 +191,92 @@ const Career = () => {
           </div>
         </CareerSection>
 
-        {/* Education Section */}
-        <CareerSection id="education">
-          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-screen w-full flex flex-col justify-center">
-            <div className="flex items-center mb-12">
-              <GraduationCap className="w-10 h-10 text-accent mr-6" />
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Education</h2>
-            </div>
-            <Timeline items={educationData} />
-          </div>
-        </CareerSection>
-
-        {/* Passion Section */}
-        <CareerSection id="passion">
-          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-screen w-full flex flex-col justify-center">
-            <div className="flex items-center mb-12">
-              <Heart className="w-10 h-10 text-secondary mr-6" />
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Passion & Interests</h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-12">
-              <motion.div 
-                className="space-y-6 p-8 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-2xl font-semibold text-foreground">Technology Innovation</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Fascinated by emerging technologies like AI, blockchain, and quantum computing. 
-                  Always exploring how these can shape the future of human interaction with technology.
-                </p>
-              </motion.div>
-              <motion.div 
-                className="space-y-6 p-8 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-2xl font-semibold text-foreground">Open Source</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Contributing to open source projects and building tools that help other developers. 
-                  Believing in the power of community-driven development and knowledge sharing.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </CareerSection>
-
         {/* Projects Section */}
         <CareerSection id="projects">
-          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-12 min-h-screen w-full flex flex-col justify-center">
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 md:p-12 min-h-screen w-full flex flex-col justify-center">
             <div className="flex items-center mb-12">
               <Code className="w-10 h-10 text-primary mr-6" />
               <h2 className="text-4xl md:text-5xl font-bold text-foreground">Featured Projects</h2>
             </div>
-            <div className="grid md:grid-cols-2 gap-12">
-              <motion.div 
-                className="p-10 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-2xl font-semibold text-foreground mb-4">AI-Powered Dashboard</h3>
-                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  A comprehensive analytics platform using machine learning to provide insights 
-                  and predictions for business intelligence.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <span className="px-4 py-2 bg-primary/20 text-primary rounded-full text-sm border border-primary/20 font-medium">React</span>
-                  <span className="px-4 py-2 bg-accent/20 text-accent rounded-full text-sm border border-accent/20 font-medium">Python</span>
-                  <span className="px-4 py-2 bg-secondary/20 text-secondary rounded-full text-sm border border-secondary/20 font-medium">TensorFlow</span>
-                </div>
-              </motion.div>
-              <motion.div 
-                className="p-10 bg-background/20 backdrop-blur-sm rounded-xl border border-border/30"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-2xl font-semibold text-foreground mb-4">3D Web Experience</h3>
-                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  An immersive web application using Three.js and WebGL to create interactive 
-                  3D environments for storytelling and data visualization.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <span className="px-4 py-2 bg-primary/20 text-primary rounded-full text-sm border border-primary/20 font-medium">Three.js</span>
-                  <span className="px-4 py-2 bg-accent/20 text-accent rounded-full text-sm border border-accent/20 font-medium">WebGL</span>
-                  <span className="px-4 py-2 bg-secondary/20 text-secondary rounded-full text-sm border border-secondary/20 font-medium">GSAP</span>
-                </div>
-              </motion.div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projectsData.map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <GlowCard 
+                    glowColor={project.glowColor}
+                    customSize
+                    className="h-full min-h-[400px] w-full"
+                  >
+                    <div className="flex flex-col h-full">
+                      <div className="flex-1 space-y-4">
+                        <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
+                        <p className="text-muted-foreground leading-relaxed text-sm">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {project.technologies.map((tech) => (
+                            <span 
+                              key={tech}
+                              className="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs border border-primary/20 font-medium"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex gap-3 mt-6">
+                        <Button 
+                          size="sm" 
+                          className="flex-1 bg-primary hover:bg-primary/90"
+                          onClick={() => window.open(project.demoUrl, '_blank')}
+                        >
+                          <Play className="w-4 h-4 mr-2" />
+                          Demo
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          className="flex-1"
+                          onClick={() => window.open(project.githubUrl, '_blank')}
+                        >
+                          <Github className="w-4 h-4 mr-2" />
+                          Code
+                        </Button>
+                      </div>
+                    </div>
+                  </GlowCard>
+                </motion.div>
+              ))}
             </div>
+          </div>
+        </CareerSection>
+
+        {/* Technology Stack Section */}
+        <CareerSection id="tech-stack">
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 md:p-12 min-h-screen w-full flex flex-col justify-center">
+            <div className="flex items-center mb-12 justify-center">
+              <Code className="w-10 h-10 text-accent mr-6" />
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Technology Stack</h2>
+            </div>
+            <div className="flex justify-center">
+              <OrbitingSkills />
+            </div>
+          </div>
+        </CareerSection>
+
+        {/* Education Section */}
+        <CareerSection id="education">
+          <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 md:p-12 min-h-screen w-full flex flex-col justify-center">
+            <div className="flex items-center mb-12">
+              <GraduationCap className="w-10 h-10 text-secondary mr-6" />
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Education</h2>
+            </div>
+            <Timeline items={educationData} />
           </div>
         </CareerSection>
 

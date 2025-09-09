@@ -12,7 +12,8 @@ import { AnimatedSocialIcons } from "@/components/ui/floating-action-button";
 import { CursorSpotlight } from "@/components/ui/cursor-spotlight";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import OrbitingSkills from "@/components/ui/orbiting-skills";
-import { CircularGallery } from "@/components/ui/circular-gallery";
+import { ConnectedTimeline } from "@/components/ui/connected-timeline";
+import { CertificateGallery } from "@/components/ui/certificate-gallery";
 import { useState } from "react";
 
 const Career = () => {
@@ -355,12 +356,14 @@ const Career = () => {
                     </div>
                   </div>
 
-                  {/* Right 3D Scene - Optimized and Uncrpped */}
-                  <div className="relative h-[70vh] w-full rounded-2xl overflow-visible">
-                    <SplineScene 
-                      scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                      className="w-full h-full scale-125 origin-center"
-                    />
+                  {/* Right 3D Scene - Optimized and Stable */}
+                  <div className="relative h-[70vh] w-full rounded-2xl overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-primary/5 to-transparent rounded-2xl flex items-center justify-center">
+                      <SplineScene 
+                        scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                        className="w-full h-full object-cover transform scale-110"
+                      />
+                    </div>
                   </div>
                 </div>
               </CursorSpotlight>
@@ -371,11 +374,11 @@ const Career = () => {
         {/* Experience Section */}
         <CareerSection id="experience">
           <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 md:p-12 min-h-screen w-full flex flex-col justify-center">
-            <div className="flex items-center mb-12">
-              <Briefcase className="w-10 h-10 text-primary mr-6" />
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Professional Experience</h2>
+            <div className="flex items-center mb-16 justify-center">
+              <Briefcase className="w-12 h-12 text-primary mr-6" />
+              <h2 className="text-4xl md:text-6xl font-bold text-foreground">Professional Journey</h2>
             </div>
-            <Timeline items={experienceData} />
+            <ConnectedTimeline items={experienceData} />
           </div>
         </CareerSection>
 
@@ -460,29 +463,25 @@ const Career = () => {
         {/* Licenses & Certifications Section */}
         <CareerSection id="certifications">
           <div className="backdrop-blur-xl bg-card/10 border border-border/20 rounded-3xl p-8 md:p-12 min-h-screen w-full flex flex-col justify-center">
-            <div className="flex items-center mb-12 justify-center">
-              <Heart className="w-10 h-10 text-primary mr-6" />
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Licenses & Certifications</h2>
-            </div>
-            <div className="h-[70vh] relative">
-              <CircularGallery 
-                items={displayedCertificates}
-                bend={2}
-                textColor="#ffffff"
-                borderRadius={0.08}
-                font="bold 24px DM Sans"
-              />
-            </div>
-            {!showAllCertificates && certificatesData.length > 20 && (
-              <div className="text-center mt-8">
-                <Button 
-                  onClick={() => setShowAllCertificates(true)}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3"
-                >
-                  See All Certificates ({certificatesData.length - 20} more)
-                </Button>
+            <div className="flex items-center justify-between mb-12">
+              <div className="flex items-center">
+                <Heart className="w-10 h-10 text-primary mr-6" />
+                <h2 className="text-4xl md:text-5xl font-bold text-foreground">Licenses & Certifications</h2>
               </div>
-            )}
+              {!showAllCertificates && certificatesData.length > 20 && (
+                <Button
+                  variant="outline"
+                  onClick={() => setShowAllCertificates(true)}
+                  className="border-primary/30 text-primary hover:bg-primary/10"
+                >
+                  See All ({certificatesData.length})
+                </Button>
+              )}
+            </div>
+            
+            <div className="h-[500px] w-full">
+              <CertificateGallery certificates={displayedCertificates} />
+            </div>
           </div>
         </CareerSection>
 
